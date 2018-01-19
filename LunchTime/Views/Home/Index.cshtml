@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="jumbotron">
+            <h1>Segundo o Guia do Mochileiro das Galáxias:</h1>
+            <p class="lead">A história de todas as grandes civilizações tende a atravessar três fases distintas: a da Sobrevivência, a da interrogação e a da Sofisticação. A Sobrevivência pode ser caracterizada pela pergunta: “Como vamos poder comer?”; a interrogação, pela pergunta: “Por que comemos?” e A Sofisticação, pela pergunta: <strong> “Aonde vamos almoçar?”</strong>.</p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="tab-content">
+            <ul class="nav nav-tabs hide">
+                <li><a href="#tab1" data-toggle="tab">Email</a></li>
+                <li><a href="#tab2" data-toggle="tab">Votação</a></li>
+                <li><a href="#tab3" data-toggle="tab">Resultado</a></li>
+                <li><a href="#tab4" data-toggle="tab">Cadastro</a></li>
+            </ul>
+
+            <div class="tab-pane active" id="tab1">
+
+                <div class="form-group">
+                    <h3>Insira seu Email para continuar</h3>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <div class="form-inline">
+                        <input type="email" class="form-control" id="Email" />
+                        <button type="button" class="btn btn-primary" ID="btnSendEmail" data-loading-text="Enviando..."><strong>Enviar</strong></button>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="tab-pane" id="tab4">
+                <div class="form-group">
+                    <h3>Complete seu Cadastro para votar!</h3>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Nome:</label>
+                    <input type="text" class="form-control" id="Name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Equipe:</label>
+                    <div class="form-inline">
+
+                        @Html.DropDownList("Teams", null, new { @class = "form-control" })
+                        
+                        <button type="button" class="btn btn-primary btnEnviarCadastro" ID="btnSendUser" data-loading-text="Enviando..."><strong>Enviar</strong></button>
+                    </div>
+                </div>
+            </div>
+
+
+                <div class="tab-pane" id="tab2">
+
+                    <div class="form-group">
+                        <label for="email">Dia da Semana:</label>
+                        <div class="controls">
+                            
+                            <div class="btn-group" id="box-day-of-week" data-toggle="buttons">
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="DayOfWeek" id="option1" value="1" autocomplete="off"> Segunda
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="DayOfWeek" id="option2" value="2" autocomplete="off"> Terça
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="DayOfWeek" id="option3" value="3" autocomplete="off"> Quarta
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="DayOfWeek" id="option4" value="4" autocomplete="off"> Quinta
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="DayOfWeek" id="option5" value="5" autocomplete="off"> Sexta
+                                </label>
+                            </div>
+
+
+                            <button type="button" class="btn btn-success btn-lg btnVerResultado" id="btnVerResultado" data-loading-text="Consultando...">
+                                <strong>Ver Resultado</strong>
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Restaurante:</label>
+                        <div class="controls">
+
+
+                            <div class="btn-group" id="box-restaurants" data-toggle="buttons">
+                                @foreach (var item in ViewBag.Restaurants)
+                                {
+                                    <label class="btn btn-primary">
+                                        <input type="radio" name="Restaurant" value="@item.RestaurantID" autocomplete="off"> @item.Name
+                                    </label>
+                                }
+                            </div>
+
+                            <button type="button" class="hide btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+                                <strong>Add Restaurante</strong>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+
+                        <button type="button" class="btn btn-success btn-lg" ID="btnEnviarVoto" data-loading-text="Enviando..."><strong>Votar</strong></button>
+
+                    </div>
+
+                </div>
+
+                <div class="tab-pane" id="tab3">
+
+                    <div id="boxResultado">
+
+                        <h4>Com <label id="lblQtdVotos"></label> Voto(s)</h4>
+                        <h3><label id="lblDiaSemana"></label> é dia de <label id="lblRestauranteVencedor"></label>!</h3>
+
+                        <button type="button" class="btn btn-success btn-lg btnVerResultado" id="btnAtualizarResultado" data-loading-text="Consultando...">
+                            <strong><span class="glyphicon glyphicon-refresh"></span> Atualizar</strong>
+                        </button>
+
+                    </div>
+
+                    <div id="boxSemResultado">
+                        <h3>Nenhum Restaurante foi Selecionado Para Este Dia!</h3>
+                    </div>
+                    <br />
+                    <button type="button" class="btn btn-success btn-lg" ID="btnVoltar" data-loading-text="Enviando...">
+                        <strong><span class="glyphicon glyphicon-arrow-left"></span> Retornar</strong>
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Adicionar Restaurante</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="email">Nome Restaurante:</label>
+                            <input type="text" id="NewRestaurantName" CssClass="form-control"  />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" id="btnSalvarOpcao">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+
+
+</script>
