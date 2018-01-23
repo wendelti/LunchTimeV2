@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace LunchTime.Application.ViewModels
 {
-    class RestaurantViewModel
+    public class RestaurantViewModel
     {
         public string Name { get; set; }
+        public int RestaurantId { get; set; }
     }
 }

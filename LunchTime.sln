@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunchTime.Application", "Lu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunchTime.Data.ExternalServices", "LunchTime.Data.ExternalServices\LunchTime.Data.ExternalServices.csproj", "{809024CD-B0D0-4729-A35E-B0302B8016C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunchTime.MVC", "LunchTime.MVC\LunchTime.MVC.csproj", "{2FBA1123-1740-4033-B2A2-226A3A9DC646}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{809024CD-B0D0-4729-A35E-B0302B8016C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{809024CD-B0D0-4729-A35E-B0302B8016C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{809024CD-B0D0-4729-A35E-B0302B8016C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FBA1123-1740-4033-B2A2-226A3A9DC646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FBA1123-1740-4033-B2A2-226A3A9DC646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FBA1123-1740-4033-B2A2-226A3A9DC646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FBA1123-1740-4033-B2A2-226A3A9DC646}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +82,6 @@ Global
 		{82D634AF-5565-4135-8CB8-CC102A334F74} = {6B3FED7D-331E-492A-B3DC-D57D79C4BE6A}
 		{5C9DD63D-7865-484F-A6FF-3FDBE226B682} = {47E4842D-8CF5-4E8D-A6E9-C4699EC4B2EB}
 		{809024CD-B0D0-4729-A35E-B0302B8016C5} = {523BB8E0-F21D-46DB-A152-776BEB64533C}
+		{2FBA1123-1740-4033-B2A2-226A3A9DC646} = {3BA91DDF-A3ED-4B77-B590-50627AC6D033}
 	EndGlobalSection
 EndGlobal

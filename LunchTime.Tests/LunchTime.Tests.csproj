@@ -92,6 +92,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LunchTime.Infra.Data\LunchTime.Infra.Data.csproj">
+      <Project>{1d87a8cb-823b-46da-b30c-24132225e680}</Project>
+      <Name>LunchTime.Infra.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LunchTime\LunchTime.UI.MVC.csproj">
       <Project>{DBF2546B-C190-4CF9-B069-CE4FEE825A0F}</Project>
       <Name>LunchTime.UI.MVC</Name>

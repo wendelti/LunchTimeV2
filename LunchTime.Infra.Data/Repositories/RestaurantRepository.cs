@@ -10,25 +10,27 @@ namespace LunchTime.Infra.Data.Repositories
     public class RestaurantRepository
     {
 
+        public LunchTimeContext _ctx;
+
+        public RestaurantRepository(LunchTimeContext ctx)
+        {
+            _ctx = ctx;
+        }
+
         public void AddRestaurant(Restaurant restaurant)
         {
-            using (var ctx = new LunchTimeContext())
-            {
-                ctx.Restaurants.Add(restaurant);
-                ctx.SaveChanges();
-            }
+            _ctx.Restaurants.Add(restaurant);
+            _ctx.SaveChanges();
         }
 
         public Restaurant FindById(int restaurantId)
         {
             Restaurant restaurant = null;
 
-            using (var ctx = new LunchTimeContext())
-            {
-                restaurant = (from t in ctx.Restaurants
-                              where t.RestaurantID == restaurantId
-                              select t).FirstOrDefault();
-            }
+            restaurant = (from t in _ctx.Restaurants
+                            where t.RestaurantID == restaurantId
+                            select t).FirstOrDefault();
+         
 
             return restaurant;
 
@@ -39,11 +41,9 @@ namespace LunchTime.Infra.Data.Repositories
         {
             List<Restaurant> restaurant = null;
 
-            using (var ctx = new LunchTimeContext())
-            {
-                restaurant = (from t in ctx.Restaurants
-                              select t).ToList<Restaurant>();
-            }
+        
+            restaurant = (from t in _ctx.Restaurants
+                            select t).ToList<Restaurant>();
 
             return restaurant;
 

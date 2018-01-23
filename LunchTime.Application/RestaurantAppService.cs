@@ -1,4 +1,6 @@
-﻿using LunchTime.Domain.Entities;
+﻿using LunchTime.Application.Adapters;
+using LunchTime.Application.ViewModels;
+using LunchTime.Domain.Entities;
 using LunchTime.Infra.Data.Repositories;
 using System;
 using System.Collections.Generic;
@@ -8,8 +10,21 @@ using System.Threading.Tasks;
 
 namespace LunchTime.Application
 {
-    public class RestaurantAppService : BaseAppService
+    public interface IRestauranteAppService
     {
+        void AddRestaurant(string name);
+        Restaurant FindById(int restaurantId);
+        IEnumerable<RestaurantViewModel> FindAll();
+    }
+
+    public class RestaurantAppService : IRestauranteAppService
+    {
+        RestaurantRepository _restaurantRepository;
+
+        public RestaurantAppService(RestaurantRepository restaurantRepository)
+        {
+            _restaurantRepository = restaurantRepository;
+        }
 
         public void AddRestaurant(string name)
         {
@@ -25,13 +40,15 @@ namespace LunchTime.Application
             return _restaurantRepository.FindById(restaurantId);
         }
 
-        public List<Restaurant> FindAll()
+        public IEnumerable<RestaurantViewModel> FindAll()
         {
-
-            return _restaurantRepository.FindAll();
-
-
+            var viewModelAdapter = new RestaurantEntityToRestaurantViewModelAdapter();
+            foreach (Restaurant restauant in _restaurantRepository.FindAll())
+            {
+                yield return viewModelAdapter.GetView(restauant);
+            }
         }
+        
 
     }
 }

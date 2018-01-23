@@ -40,21 +40,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseAppService.cs" />
+    <Compile Include="Adapters\RestaurantEntityToRestaurantViewModelAdapter.cs" />
+    <Compile Include="Adapters\TeamEntityToTeamViewModelAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestaurantAppService.cs" />
     <Compile Include="TeamAppService.cs" />
     <Compile Include="UserAppService.cs" />
     <Compile Include="ViewModels\RestaurantViewModel.cs" />
+    <Compile Include="ViewModels\EmailSearchResponseViewModel.cs" />
+    <Compile Include="ViewModels\ResponseViewModel.cs" />
+    <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="VoteAppService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Adapters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\LunchTime.Domain\LunchTime.Domain.csproj">
       <Project>{82d634af-5565-4135-8cb8-cc102a334f74}</Project>
       <Name>LunchTime.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunchTime.Infra.CrossCutting.Helper\LunchTime.Infra.CrossCutting.Helper.csproj">
+      <Project>{1E95A391-EC09-42FA-AE41-46D579D9F4A8}</Project>
+      <Name>LunchTime.Infra.CrossCutting.Helper</Name>
     </ProjectReference>
     <ProjectReference Include="..\LunchTime.Infra.Data\LunchTime.Infra.Data.csproj">
       <Project>{1d87a8cb-823b-46da-b30c-24132225e680}</Project>

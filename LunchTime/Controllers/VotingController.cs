@@ -1,5 +1,4 @@
 ﻿using LunchTime.Application;
-using LunchTime.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,38 +14,18 @@ namespace LunchTime.Controllers
         private UserAppService _userAppService;
         private RestaurantAppService _restaurantAppService;
 
-        public VotingController()
+        public VotingController(RestaurantAppService restaurantAppService)
         {
             _voteAppService = new VoteAppService();
             _userAppService = new UserAppService();
-            _restaurantAppService = new RestaurantAppService();
+            _restaurantAppService = restaurantAppService;
         }
 
         public ActionResult Add(int dayOfWeek, string email, int restaurantId)
         {
-            try
-            {
+            var response = _voteAppService.Add(dayOfWeek, email, restaurantId);
+            return Json(response);
 
-                var vote = new Vote();
-                vote.DayOfWeek = dayOfWeek;
-                vote.UserID = _userAppService.FindByEmail(email).UserID;
-                vote.RestaurantID = restaurantId;
-                vote.VoteDate = DateTime.Now;
-
-                if (_voteAppService.Add(vote))
-                {
-                    return Json(new { msg = "OK" });
-                }
-                else
-                {
-                    return Json(new { msg = "Erro ao Salvar" });
-                }
-
-            }
-            catch (Exception e)
-            {
-                return Json(new { msg = "Erro ao Salvar: " + e.Message });
-            }
         }
 
         public ActionResult ShowResult(int dayOfWeek)

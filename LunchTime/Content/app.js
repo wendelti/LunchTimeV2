@@ -134,7 +134,7 @@ $(document).ready(function () {
             return false;
         }
 
-        var data = { dayOfWeek: selectedDayOfWeek, email: EmailAtual, restaurantId: selectedRestaurant }
+        var data = { dayOfWeek: selectedDayOfWeek, email: localStorage.getItem("EmailAtual"), restaurantId: selectedRestaurant }
 
         $.ajax({
             type: "POST",
